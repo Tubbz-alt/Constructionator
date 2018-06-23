@@ -11,7 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
+
 public class Calculator extends AppCompatActivity {
+
+    private static final String TAG = "CalculatorPrint";
 
     String currentNumStr = "";
     String equationStr = "";
@@ -35,6 +39,10 @@ public class Calculator extends AppCompatActivity {
         SetEquationTextBox(currentNumStr);
     }
 
+    /* Pressing any of the operations buttons, besides the = sign,
+    adds the previously entered number, then the operation symbol,
+    to the equation string. */
+
     void OnOperationButtonPress(View btn) {
         TextView btnTextView = (TextView) btn;
         equationStr = equationStr.concat(currentNumStr + btnTextView.getText().toString());
@@ -42,11 +50,20 @@ public class Calculator extends AppCompatActivity {
         SetEquationTextBox(btnTextView.getText().toString());
     }
 
+    /* Solve equation saved in equationStr */
+    void OnEqualsButtonPress(View btn) {
+        Log.d(TAG, equationStr);
+    }
+
+    void OnClearEverythingButtonPress(View btn) {
+        currentNumStr = "";
+        equationStr = "";
+        SetEquationTextBox("0");
+    }
+
     void SetEquationTextBox(String str) {
         TextView numberBox = findViewById(R.id.numberBox);
         numberBox.setText(str);
     }
-
-    void 
 
 }
