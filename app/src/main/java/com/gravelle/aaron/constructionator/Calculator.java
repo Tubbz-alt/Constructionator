@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class Calculator extends AppCompatActivity {
 
     String currentNumStr = "";
+    String equationStr = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +24,29 @@ public class Calculator extends AppCompatActivity {
 
     int OnNumberButtonPress(View btn) {
         TextView btnTextView = (TextView) btn;
-        TextView numberBox = findViewById(R.id.numberBox);
         currentNumStr = currentNumStr.concat(btnTextView.getText().toString());
-        numberBox.setText(currentNumStr);
+        SetEquationTextBox(currentNumStr);
         return 0;
     }
 
     void OnClearButtonPress(View btn) {
         TextView numberBox = findViewById(R.id.numberBox);
         currentNumStr = "";
-        numberBox.setText(currentNumStr);
+        SetEquationTextBox(currentNumStr);
     }
+
+    void OnOperationButtonPress(View btn) {
+        TextView btnTextView = (TextView) btn;
+        equationStr = equationStr.concat(currentNumStr + btnTextView.getText().toString());
+        currentNumStr = "";
+        SetEquationTextBox(btnTextView.getText().toString());
+    }
+
+    void SetEquationTextBox(String str) {
+        TextView numberBox = findViewById(R.id.numberBox);
+        numberBox.setText(str);
+    }
+
+    void 
 
 }
